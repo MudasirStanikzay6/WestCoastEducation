@@ -11,6 +11,12 @@ public class Course
 
     public override string ToString()
     {
-        return $"{CourseNumber} - {Title} | {Length} dagar | {StartDate:yyyy-MM-dd} till {EndDate:yyyy-MM-dd} | {CourseType}";
+        return
+            $"Kursnummer: {CourseNumber}\n" +
+            $"Titel:      {Title}\n" +
+            $"Längd:      {Length} dagar\n" +
+            $"Startdatum: {StartDate:yyyy-MM-dd}\n" +
+            $"Slutdatum:  {EndDate:yyyy-MM-dd}\n" +
+            $"Kurssätt:   {CourseType}";
     }
 }
