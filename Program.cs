@@ -46,7 +46,117 @@ using WestCoastEducation.Services;
                     break;
                 }
 
-            Console.WriteLine("Ange ett heltal större än 0.");
+                Console.WriteLine("Ange ett heltal större än 0.");
+            }
+
+            DateTime startDate = ReadDate("Startdatum (ÅÅÅÅ-MM-DD): ");
+            DateTime endDate;
+
+            while (true)
+            {
+                endDate = ReadDate("Slutdatum (ÅÅÅÅ-MM-DD): ");
+
+                if (endDate >= startDate)
+                {
+                    break;
+                }
+
+                Console.WriteLine("Slutdatumet får inte vara före startdatumet.");
+            }
+
+            string courseType;
+
+            while (true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Välj kurssätt:");
+                Console.WriteLine("  1. Klassrum");
+                Console.WriteLine("  2. Distans");
+                Console.Write("Ditt val: ");
+
+                string? typeChoice = Console.ReadLine();
+
+                if (typeChoice == "1")
+                {
+                    courseType = "Klassrum";
+                    break;
+                }
+
+                if (typeChoice == "2")
+                {
+                    courseType = "Distans";
+                    break;
+                }
+
+                Console.WriteLine("Ogiltigt val. Välj 1 eller 2.");
+            }
+
+            Course course = new Course
+            {
+                CourseNumber = courseNumber,
+                Title = title,
+                Length = length,
+                StartDate = startDate,
+                EndDate = endDate,
+                CourseType = courseType
+            };
+
+            educationService.AddCourse(course);
+
+            Console.WriteLine();
+            Console.WriteLine("Kursen har registrerats!");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine(course);
+            Console.WriteLine("----------------------------------------");
+            break;
+
+        case "3":
+            running = false;
+            Console.WriteLine();
+            Console.WriteLine("Programmet avslutas. Tack för besöket!");
+            break;
+
+        default:
+            Console.WriteLine();
+            Console.WriteLine("Ogiltigt val. Försök igen.");
+            break;
+    }
+}
+
+    static string ReadRequiredText(string prompt)
+{
+    while (true)
+    {
+        Console.Write(prompt);
+        string? input = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(input))
+        {
+            return input.Trim();
         }
+
+        Console.WriteLine("Fältet får inte vara tomt.");
+    }
+}
+
+    static DateTime ReadDate(string prompt)
+    {
+        while (true)
+    {
+            Console.Write(prompt);
+
+        string? input = Console.ReadLine();
+
+        if (DateTime.TryParseExact(
+            input,
+            "yyyy-MM-dd",
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.None,
+            out DateTime date))
+        {
+            return date;
+        }
+
+        Console.WriteLine("Ogiltigt datum. Exempel på korrekt format: 2026-10-22.");
     }
 }
