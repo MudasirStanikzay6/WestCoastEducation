@@ -1,0 +1,12 @@
+namespace WestCoastEducation.Models;
+
+public class Person
+{
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public required string Phone { get; set; }
+    public required string PersonalNumber { get; set; }
+    public required string Address { get; set; }
+    public required string PostalCode { get; set; }
+    public required string City { get; set; }
+}
