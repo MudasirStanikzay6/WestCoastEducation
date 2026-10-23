@@ -6,6 +6,7 @@ public class EducationService
 {
     private readonly List<Course> _courses = new List<Course>();
     private readonly List<Student> _students = new List<Student>();
+    private readonly List<Teacher> _teachers = new List<Teacher>();
 
     public void AddCourse(Course course)
     {
@@ -61,5 +62,48 @@ public class EducationService
         }
 
         Console.WriteLine($"Totalt antal studerande: {_students.Count}");
+    }
+
+    public void AddTeacher(Teacher teacher)
+    {
+        _teachers.Add(teacher);
+    }
+
+    public void AssignCourseToTeacher(Teacher teacher, Course course)
+    {
+        teacher.Courses.Add(course);
+    }
+
+    public List<Teacher> GetTeachers()
+    {
+        return _teachers;
+    }
+
+    public List<Course> GetCourses()
+    {
+        return _courses;
+    }
+
+    public void ListTeachers()
+    {
+        Console.WriteLine();
+        Console.WriteLine("============== LÄRARLISTA =============");
+
+        if (_teachers.Count == 0)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Det finns inga lärare ännu.");
+            return;
+        }
+
+        Console.WriteLine();
+
+        foreach (Teacher teacher in _teachers)
+        {
+            Console.WriteLine(teacher);
+            Console.WriteLine("----------------------------------------");
+        }
+
+        Console.WriteLine($"Totalt antal lärare: {_teachers.Count}");
     }
 }

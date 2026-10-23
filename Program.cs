@@ -16,7 +16,10 @@ while (running)
     Console.WriteLine("  2. Lägg till kurs");
     Console.WriteLine("  3. Lista studerande");
     Console.WriteLine("  4. Lägg till studerande");
-    Console.WriteLine("  5. Avsluta");
+    Console.WriteLine("  5. Lista lärare");
+    Console.WriteLine("  6. Lägg till lärare");
+    Console.WriteLine("  7. Koppla lärare till kurs");
+    Console.WriteLine("  8. Avsluta");
     Console.WriteLine("----------------------------------------");
     Console.Write("Välj ett alternativ: ");
 
@@ -149,6 +152,49 @@ while (running)
             break;
 
         case "5":
+            educationService.ListTeachers();
+            break;
+
+        case "6":
+            Console.WriteLine();
+            Console.WriteLine("----------- LÄGG TILL LÄRARE -----------");
+            Console.WriteLine();
+
+            string teacherFirstName = ReadRequiredText("Förnamn: ");
+            string teacherLastName = ReadRequiredText("Efternamn: ");
+            string teacherPhone = ReadRequiredText("Telefon: ");
+            string teacherPersonalNumber = ReadRequiredText("Personnummer: ");
+            string teacherAddress = ReadRequiredText("Adress: ");
+            string teacherPostalCode = ReadRequiredText("Postnummer: ");
+            string teacherCity = ReadRequiredText("Ort: ");
+            string knowledgeArea = ReadRequiredText("Kunskapsområde: ");
+
+            Teacher teacher = new Teacher
+            {
+                FirstName = teacherFirstName,
+                LastName = teacherLastName,
+                Phone = teacherPhone,
+                PersonalNumber = teacherPersonalNumber,
+                Address = teacherAddress,
+                PostalCode = teacherPostalCode,
+                City = teacherCity,
+                KnowledgeArea = knowledgeArea
+            };
+
+            educationService.AddTeacher(teacher);
+
+            Console.WriteLine();
+            Console.WriteLine("Läraren har registrerats!");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine(teacher);
+            Console.WriteLine("----------------------------------------");
+            break;
+
+        case "7":
+            AssignTeacherToCourse(educationService);
+            break;
+
+        case "8":
             running = false;
             Console.WriteLine();
             Console.WriteLine("Programmet avslutas. Tack för besöket!");
@@ -159,6 +205,78 @@ while (running)
             Console.WriteLine("Ogiltigt val. Försök igen.");
             break;
     }
+}
+
+static void AssignTeacherToCourse(EducationService educationService)
+{
+    List<Teacher> teachers = educationService.GetTeachers();
+    List<Course> courses = educationService.GetCourses();
+
+    Console.WriteLine();
+    Console.WriteLine("--------- KOPPLA LÄRARE TILL KURS ---------");
+
+    if (teachers.Count == 0)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Det finns inga lärare ännu.");
+        return;
+    }
+
+    if (courses.Count == 0)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Det finns inga kurser ännu.");
+        return;
+    }
+
+    Console.WriteLine();
+    Console.WriteLine("Välj lärare:");
+
+    for (int i = 0; i < teachers.Count; i++)
+    {
+        Console.WriteLine($"  {i + 1}. {teachers[i].FirstName} {teachers[i].LastName}");
+    }
+
+    Console.Write("Ditt val: ");
+
+    if (!int.TryParse(Console.ReadLine(), out int teacherChoice) ||
+        teacherChoice < 1 ||
+        teacherChoice > teachers.Count)
+    {
+        Console.WriteLine("Ogiltigt val.");
+        return;
+    }
+
+    Teacher selectedTeacher = teachers[teacherChoice - 1];
+
+    Console.WriteLine();
+    Console.WriteLine("Välj kurs:");
+
+    for (int i = 0; i < courses.Count; i++)
+    {
+        Console.WriteLine($"  {i + 1}. {courses[i].CourseNumber} - {courses[i].Title}");
+    }
+
+    Console.Write("Ditt val: ");
+
+    if (!int.TryParse(Console.ReadLine(), out int courseChoice) ||
+        courseChoice < 1 ||
+        courseChoice > courses.Count)
+    {
+        Console.WriteLine("Ogiltigt val.");
+        return;
+    }
+
+    Course selectedCourse = courses[courseChoice - 1];
+
+    educationService.AssignCourseToTeacher(selectedTeacher, selectedCourse);
+
+    Console.WriteLine();
+    Console.WriteLine("Kursen har kopplats till läraren!");
+    Console.WriteLine("----------------------------------------");
+    Console.WriteLine($"Lärare: {selectedTeacher.FirstName} {selectedTeacher.LastName}");
+    Console.WriteLine($"Kurs:   {selectedCourse.CourseNumber} - {selectedCourse.Title}");
+    Console.WriteLine("----------------------------------------");
 }
 
 static string ReadRequiredText(string prompt)
