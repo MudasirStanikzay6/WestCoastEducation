@@ -25,7 +25,11 @@ public class MenuHandler
             Console.WriteLine("  5. Lista lärare");
             Console.WriteLine("  6. Lägg till lärare");
             Console.WriteLine("  7. Koppla lärare till kurs");
-            Console.WriteLine("  8. Avsluta");
+            Console.WriteLine("  8. Lägg till utbildningsledare");
+            Console.WriteLine("  9. Lista utbildningsledare");
+            Console.WriteLine(" 10. Lägg till administratör");
+            Console.WriteLine(" 11. Lista administratörer");
+            Console.WriteLine(" 12. Avsluta");
             Console.WriteLine("----------------------------------------");
             Console.Write("Välj ett alternativ: ");
 
@@ -62,6 +66,22 @@ public class MenuHandler
                     break;
 
                 case "8":
+                    AddEducationLeader();
+                    break;
+
+                case "9":
+                    _educationService.ListEducationLeaders();
+                    break;
+
+                case "10":
+                    AddAdministrator();
+                    break;
+
+                case "11":
+                    _educationService.ListAdministrators();
+                    break;
+
+                case "12":
                     running = false;
                     Console.WriteLine();
                     Console.WriteLine("Programmet avslutas. Tack för besöket!");
@@ -209,6 +229,62 @@ public class MenuHandler
         Console.WriteLine("Läraren har registrerats!");
         Console.WriteLine("----------------------------------------");
         Console.WriteLine(teacher);
+        Console.WriteLine("----------------------------------------");
+    }
+
+    private void AddEducationLeader()
+    {
+        Console.WriteLine();
+        Console.WriteLine("------ LÄGG TILL UTBILDNINGSLEDARE ------");
+        Console.WriteLine();
+
+        EducationLeader educationLeader = new EducationLeader
+        {
+            FirstName = InputHelper.ReadRequiredText("Förnamn: "),
+            LastName = InputHelper.ReadRequiredText("Efternamn: "),
+            Phone = InputHelper.ReadRequiredText("Telefon: "),
+            PersonalNumber = InputHelper.ReadRequiredText("Personnummer: "),
+            Address = InputHelper.ReadRequiredText("Adress: "),
+            PostalCode = InputHelper.ReadRequiredText("Postnummer: "),
+            City = InputHelper.ReadRequiredText("Ort: "),
+            KnowledgeArea = InputHelper.ReadRequiredText("Kunskapsområde: "),
+            EmploymentDate = InputHelper.ReadDate("Anställningsdatum (ÅÅÅÅ-MM-DD): ")
+        };
+
+        _educationService.AddEducationLeader(educationLeader);
+
+        Console.WriteLine();
+        Console.WriteLine("Utbildningsledaren har registrerats!");
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine(educationLeader);
+        Console.WriteLine("----------------------------------------");
+    }
+
+    private void AddAdministrator()
+    {
+        Console.WriteLine();
+        Console.WriteLine("--------- LÄGG TILL ADMINISTRATÖR --------");
+        Console.WriteLine();
+
+        Administrator administrator = new Administrator
+        {
+            FirstName = InputHelper.ReadRequiredText("Förnamn: "),
+            LastName = InputHelper.ReadRequiredText("Efternamn: "),
+            Phone = InputHelper.ReadRequiredText("Telefon: "),
+            PersonalNumber = InputHelper.ReadRequiredText("Personnummer: "),
+            Address = InputHelper.ReadRequiredText("Adress: "),
+            PostalCode = InputHelper.ReadRequiredText("Postnummer: "),
+            City = InputHelper.ReadRequiredText("Ort: "),
+            KnowledgeArea = InputHelper.ReadRequiredText("Kunskapsområde: "),
+            EmploymentDate = InputHelper.ReadDate("Anställningsdatum (ÅÅÅÅ-MM-DD): ")
+        };
+
+        _educationService.AddAdministrator(administrator);
+
+        Console.WriteLine();
+        Console.WriteLine("Administratören har registrerats!");
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine(administrator);
         Console.WriteLine("----------------------------------------");
     }
 
