@@ -34,4 +34,32 @@ public class EducationService
 
         Console.WriteLine($"Totalt antal kurser: {_courses.Count}");
     }
+
+    public void AddStudent(Student student)
+    {
+        _students.Add(student);
+    }
+
+    public void ListStudents()
+    {
+        Console.WriteLine();
+        Console.WriteLine("=========== STUDERANDELISTA ===========");
+
+        if (_students.Count == 0)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Det finns inga studerande ännu.");
+            return;
+        }
+
+        Console.WriteLine();
+
+        foreach (Student student in _students)
+        {
+            Console.WriteLine(student);
+            Console.WriteLine("----------------------------------------");
+        }
+
+        Console.WriteLine($"Totalt antal studerande: {_students.Count}");
+    }
 }

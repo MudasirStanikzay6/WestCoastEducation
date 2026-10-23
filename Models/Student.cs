@@ -4,6 +4,13 @@ public class Student : Person
 {
     public override string ToString()
     {
-        return $"{FirstName} {LastName} | Telefon: {Phone} | Personnummer: {PersonalNumber} | Adress: {Address}, {PostalCode} {City}";
-    }
+    return
+        $"Förnamn:    {FirstName}\n" +
+        $"Efternamn:  {LastName}\n" +
+        $"Telefon:    {Phone}\n" +
+        $"Personnummer: {PersonalNumber}\n" +
+        $"Adress:     {Address}\n" +
+        $"Postnummer: {PostalCode}\n" +
+        $"Ort:        {City}";
+    }   
 }

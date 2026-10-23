@@ -2,21 +2,23 @@
 using WestCoastEducation.Models;
 using WestCoastEducation.Services;
 
-    EducationService educationService = new EducationService();
+EducationService educationService = new EducationService();
 
-    bool running = true;
+bool running = true;
 
-    while (running)
-    {
-        Console.WriteLine();
-        Console.WriteLine("========================================");
-        Console.WriteLine("       WESTCOAST EDUCATION");
-        Console.WriteLine("========================================");
-        Console.WriteLine("  1. Lista kurser");
-        Console.WriteLine("  2. Lägg till kurs");
-        Console.WriteLine("  3. Avsluta");
-        Console.WriteLine("----------------------------------------");
-        Console.Write("Välj ett alternativ: ");
+while (running)
+{
+    Console.WriteLine();
+    Console.WriteLine("========================================");
+    Console.WriteLine("       WESTCOAST EDUCATION");
+    Console.WriteLine("========================================");
+    Console.WriteLine("  1. Lista kurser");
+    Console.WriteLine("  2. Lägg till kurs");
+    Console.WriteLine("  3. Lista studerande");
+    Console.WriteLine("  4. Lägg till studerande");
+    Console.WriteLine("  5. Avsluta");
+    Console.WriteLine("----------------------------------------");
+    Console.Write("Välj ett alternativ: ");
 
     string? choice = Console.ReadLine();
 
@@ -27,7 +29,6 @@ using WestCoastEducation.Services;
             break;
 
         case "2":
-
             Console.WriteLine();
             Console.WriteLine("------------ LÄGG TILL KURS ------------");
             Console.WriteLine();
@@ -111,6 +112,43 @@ using WestCoastEducation.Services;
             break;
 
         case "3":
+            educationService.ListStudents();
+            break;
+
+        case "4":
+            Console.WriteLine();
+            Console.WriteLine("--------- LÄGG TILL STUDERANDE ---------");
+            Console.WriteLine();
+
+            string firstName = ReadRequiredText("Förnamn: ");
+            string lastName = ReadRequiredText("Efternamn: ");
+            string phone = ReadRequiredText("Telefon: ");
+            string personalNumber = ReadRequiredText("Personnummer: ");
+            string address = ReadRequiredText("Adress: ");
+            string postalCode = ReadRequiredText("Postnummer: ");
+            string city = ReadRequiredText("Ort: ");
+
+            Student student = new Student
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Phone = phone,
+                PersonalNumber = personalNumber,
+                Address = address,
+                PostalCode = postalCode,
+                City = city
+            };
+
+            educationService.AddStudent(student);
+
+            Console.WriteLine();
+            Console.WriteLine("Studeranden har registrerats!");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine(student);
+            Console.WriteLine("----------------------------------------");
+            break;
+
+        case "5":
             running = false;
             Console.WriteLine();
             Console.WriteLine("Programmet avslutas. Tack för besöket!");
@@ -123,7 +161,7 @@ using WestCoastEducation.Services;
     }
 }
 
-    static string ReadRequiredText(string prompt)
+static string ReadRequiredText(string prompt)
 {
     while (true)
     {
@@ -139,12 +177,11 @@ using WestCoastEducation.Services;
     }
 }
 
-    static DateTime ReadDate(string prompt)
+static DateTime ReadDate(string prompt)
+{
+    while (true)
     {
-        while (true)
-    {
-            Console.Write(prompt);
-
+        Console.Write(prompt);
         string? input = Console.ReadLine();
 
         if (DateTime.TryParseExact(
@@ -157,6 +194,7 @@ using WestCoastEducation.Services;
             return date;
         }
 
-        Console.WriteLine("Ogiltigt datum. Exempel på korrekt format: 2026-10-22.");
+        Console.WriteLine(
+            "Ogiltigt datum. Exempel på korrekt format: 2026-10-22.");
     }
 }
