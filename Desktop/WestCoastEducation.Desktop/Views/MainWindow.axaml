@@ -1,0 +1,554 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:WestCoastEducation.Desktop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="1100"
+        d:DesignHeight="800"
+        x:Class="WestCoastEducation.Desktop.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="WestCoast Education"
+        Width="1100"
+        Height="800"
+        MinWidth="800"
+        MinHeight="600"
+        Background="{DynamicResource BackgroundBrush}">
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+
+        <Border Grid.Row="0"
+                Background="{DynamicResource SidebarBrush}"
+                Padding="25">
+
+            <StackPanel Spacing="5">
+                <TextBlock Text="WESTCOAST EDUCATION"
+                           FontSize="25"
+                           FontWeight="Bold"
+                           Foreground="White" />
+
+                <TextBlock Text="Administrationssystem"
+                           FontSize="14"
+                           Foreground="#CBD5E1" />
+            </StackPanel>
+
+        </Border>
+
+        <!-- MAIN CONTENT -->
+
+        <TabControl x:Name="MainTabs"
+                    Grid.Row="1"
+                    Margin="20">
+
+            <!-- DASHBOARD -->
+
+            <TabItem Header="Översikt">
+
+                <ScrollViewer>
+                    <StackPanel Margin="25" Spacing="25">
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Välkommen!"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource TextBrush}" />
+
+                            <TextBlock Text="Här kan du hantera kurser, studenter och lärare."
+                                       FontSize="16"
+                                       Foreground="{DynamicResource SecondaryTextBrush}" />
+                        </StackPanel>
+
+                        <TextBlock Text="Administration"
+                                   FontSize="21"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource TextBrush}" />
+
+                        <!-- CLICKABLE DASHBOARD CARDS -->
+
+                        <Grid ColumnDefinitions="*,*,*"
+                              ColumnSpacing="15">
+
+                            <!-- COURSES CARD -->
+
+                            <Button Grid.Column="0"
+                                    Click="CoursesCard_Click"
+                                    Background="{DynamicResource SurfaceBrush}"
+                                    BorderBrush="{DynamicResource BorderBrush}"
+                                    BorderThickness="1"
+                                    Padding="20"
+                                    HorizontalContentAlignment="Stretch"
+                                    HorizontalAlignment="Stretch">
+
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="KURSER"
+                                               FontSize="13"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+
+                                    <TextBlock Text="Hantera kurser"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource TextBrush}" />
+
+                                    <TextBlock Text="Lägg till, visa och ta bort kurser."
+                                               TextWrapping="Wrap"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </StackPanel>
+
+                            </Button>
+
+                            <!-- STUDENTS CARD -->
+
+                            <Button Grid.Column="1"
+                                    Click="StudentsCard_Click"
+                                    Background="{DynamicResource SurfaceBrush}"
+                                    BorderBrush="{DynamicResource BorderBrush}"
+                                    BorderThickness="1"
+                                    Padding="20"
+                                    HorizontalContentAlignment="Stretch"
+                                    HorizontalAlignment="Stretch">
+
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="STUDENTER"
+                                               FontSize="13"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+
+                                    <TextBlock Text="Hantera studenter"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource TextBrush}" />
+
+                                    <TextBlock Text="Registrera och visa studenter."
+                                               TextWrapping="Wrap"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </StackPanel>
+
+                            </Button>
+
+                            <!-- TEACHERS CARD -->
+
+                            <Button Grid.Column="2"
+                                    Click="TeachersCard_Click"
+                                    Background="{DynamicResource SurfaceBrush}"
+                                    BorderBrush="{DynamicResource BorderBrush}"
+                                    BorderThickness="1"
+                                    Padding="20"
+                                    HorizontalContentAlignment="Stretch"
+                                    HorizontalAlignment="Stretch">
+
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="LÄRARE"
+                                               FontSize="13"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+
+                                    <TextBlock Text="Hantera lärare"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource TextBrush}" />
+
+                                    <TextBlock Text="Registrera lärare och hantera kompetensområden."
+                                               TextWrapping="Wrap"
+                                               Foreground="{DynamicResource SecondaryTextBrush}" />
+                                </StackPanel>
+
+                            </Button>
+
+                        </Grid>
+
+                        <!-- ABOUT -->
+
+                        <Border Background="{DynamicResource SurfaceBrush}"
+                                BorderBrush="{DynamicResource BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="25">
+
+                            <StackPanel Spacing="12">
+
+                                <TextBlock Text="Om WestCoast Education"
+                                           FontSize="21"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource TextBrush}" />
+
+                                <TextBlock Text="WestCoast Education erbjuder utbildningar och samlar studenter och lärare inom olika utbildningsområden."
+                                           TextWrapping="Wrap"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+
+                                <TextBlock Text="I detta administrationssystem kan personalen hantera skolans kurser, studenter och lärare på ett enkelt och smidigt sätt."
+                                           TextWrapping="Wrap"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource SecondaryTextBrush}" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </TabItem>
+
+            <!-- COURSES -->
+
+            <TabItem Header="Kurser">
+
+                <ScrollViewer>
+                    <StackPanel Margin="25" Spacing="15">
+
+                        <TextBlock Text="Hantera kurser"
+                                   FontSize="26"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource TextBrush}" />
+
+                        <Border Background="{DynamicResource SurfaceBrush}"
+                                BorderBrush="{DynamicResource BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="20">
+
+                            <StackPanel Spacing="10">
+
+                                <TextBlock Text="Lägg till ny kurs"
+                                           FontSize="20"
+                                           FontWeight="Bold" />
+
+                                <TextBlock Text="Kursnummer" />
+                                <TextBox Text="{Binding CourseNumber}"
+                                         PlaceholderText="Exempel: C102" />
+
+                                <TextBlock Text="Kursnamn" />
+                                <TextBox Text="{Binding CourseTitle}"
+                                         PlaceholderText="Ange kursnamn" />
+
+                                <TextBlock Text="Längd (dagar)" />
+                                <NumericUpDown Value="{Binding CourseLength}"
+                                               Minimum="1"
+                                               Maximum="365" />
+
+                                <TextBlock Text="Startdatum" />
+                                <DatePicker SelectedDate="{Binding StartDate}" />
+
+                                <TextBlock Text="Slutdatum" />
+                                <DatePicker SelectedDate="{Binding EndDate}" />
+
+                                <TextBlock Text="Kursform" />
+                                <ComboBox ItemsSource="{Binding CourseTypes}"
+                                          SelectedItem="{Binding CourseType}" />
+
+                                <Button Content="Spara kurs"
+                                        Command="{Binding AddCourseCommand}"
+                                        HorizontalAlignment="Stretch" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <TextBlock Text="Registrerade kurser"
+                                   FontSize="20"
+                                   FontWeight="Bold" />
+
+                        <Button Content="Hämta kurser"
+                                Command="{Binding GetCoursesCommand}"
+                                HorizontalAlignment="Left" />
+
+                        <ListBox ItemsSource="{Binding Courses}"
+                                 SelectedItem="{Binding SelectedCourse}"
+                                 MinHeight="200">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="12"
+                                            Margin="5"
+                                            Background="{DynamicResource SurfaceBrush}"
+                                            CornerRadius="8">
+
+                                        <StackPanel Spacing="5">
+                                            <TextBlock Text="{Binding CourseNumber}"
+                                                       FontWeight="Bold"
+                                                       FontSize="16" />
+
+                                            <TextBlock Text="{Binding Title}" />
+
+                                            <TextBlock Text="{Binding Length, StringFormat='Längd: {0} dagar'}" />
+
+                                            <TextBlock Text="{Binding CourseType}" />
+                                        </StackPanel>
+
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+
+                        <Button Content="Ta bort vald kurs"
+                                Command="{Binding DeleteCourseCommand}"
+                                HorizontalAlignment="Stretch" />
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </TabItem>
+
+            <!-- STUDENTS -->
+
+            <TabItem Header="Studenter">
+
+                <ScrollViewer>
+                    <StackPanel Margin="25" Spacing="15">
+
+                        <TextBlock Text="Hantera studenter"
+                                   FontSize="26"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource TextBrush}" />
+
+                        <Border Background="{DynamicResource SurfaceBrush}"
+                                BorderBrush="{DynamicResource BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="20">
+
+                            <StackPanel Spacing="10">
+
+                                <TextBlock Text="Registrera ny student"
+                                           FontSize="20"
+                                           FontWeight="Bold" />
+
+                                <TextBlock Text="Förnamn" />
+                                <TextBox Text="{Binding StudentFirstName}"
+                                         PlaceholderText="Ange förnamn" />
+
+                                <TextBlock Text="Efternamn" />
+                                <TextBox Text="{Binding StudentLastName}"
+                                         PlaceholderText="Ange efternamn" />
+
+                                <TextBlock Text="Telefonnummer" />
+                                <TextBox Text="{Binding StudentPhone}"
+                                         PlaceholderText="Ange telefonnummer" />
+
+                                <TextBlock Text="Personnummer" />
+                                <TextBox Text="{Binding StudentPersonalNumber}"
+                                         PlaceholderText="ÅÅÅÅMMDD-XXXX" />
+
+                                <TextBlock Text="Adress" />
+                                <TextBox Text="{Binding StudentAddress}"
+                                         PlaceholderText="Ange adress" />
+
+                                <TextBlock Text="Postnummer" />
+                                <TextBox Text="{Binding StudentPostalCode}"
+                                         PlaceholderText="Ange postnummer" />
+
+                                <TextBlock Text="Ort" />
+                                <TextBox Text="{Binding StudentCity}"
+                                         PlaceholderText="Ange ort" />
+
+                                <Button Content="Spara student"
+                                        Command="{Binding AddStudentCommand}"
+                                        HorizontalAlignment="Stretch" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <TextBlock Text="Registrerade studenter"
+                                   FontSize="20"
+                                   FontWeight="Bold" />
+
+                        <Button Content="Hämta studenter"
+                                Command="{Binding GetStudentsCommand}"
+                                HorizontalAlignment="Left" />
+
+                        <ListBox ItemsSource="{Binding Students}"
+                                 SelectedItem="{Binding SelectedStudent}"
+                                 MinHeight="200">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="12"
+                                            Margin="5"
+                                            Background="{DynamicResource SurfaceBrush}"
+                                            CornerRadius="8">
+
+                                        <StackPanel Spacing="5">
+                                            <TextBlock Text="{Binding FirstName}"
+                                                       FontWeight="Bold"
+                                                       FontSize="16" />
+
+                                            <TextBlock Text="{Binding LastName}" />
+                                            <TextBlock Text="{Binding Phone}" />
+                                            <TextBlock Text="{Binding PersonalNumber}" />
+                                            <TextBlock Text="{Binding Address}" />
+                                            <TextBlock Text="{Binding PostalCode}" />
+                                            <TextBlock Text="{Binding City}" />
+                                        </StackPanel>
+
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+
+                        <Button Content="Ta bort vald student"
+                                Command="{Binding DeleteStudentCommand}"
+                                HorizontalAlignment="Stretch" />
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </TabItem>
+
+            <!-- TEACHERS -->
+
+            <TabItem Header="Lärare">
+
+                <ScrollViewer>
+                    <StackPanel Margin="25" Spacing="15">
+
+                        <TextBlock Text="Hantera lärare"
+                                   FontSize="26"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource TextBrush}" />
+
+                        <Border Background="{DynamicResource SurfaceBrush}"
+                                BorderBrush="{DynamicResource BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="20">
+
+                            <StackPanel Spacing="10">
+
+                                <TextBlock Text="Registrera ny lärare"
+                                           FontSize="20"
+                                           FontWeight="Bold" />
+
+                                <TextBlock Text="Förnamn" />
+                                <TextBox Text="{Binding TeacherFirstName}"
+                                         PlaceholderText="Ange förnamn" />
+
+                                <TextBlock Text="Efternamn" />
+                                <TextBox Text="{Binding TeacherLastName}"
+                                         PlaceholderText="Ange efternamn" />
+
+                                <TextBlock Text="Telefonnummer" />
+                                <TextBox Text="{Binding TeacherPhone}"
+                                         PlaceholderText="Ange telefonnummer" />
+
+                                <TextBlock Text="Personnummer" />
+                                <TextBox Text="{Binding TeacherPersonalNumber}"
+                                         PlaceholderText="ÅÅÅÅMMDD-XXXX" />
+
+                                <TextBlock Text="Adress" />
+                                <TextBox Text="{Binding TeacherAddress}"
+                                         PlaceholderText="Ange adress" />
+
+                                <TextBlock Text="Postnummer" />
+                                <TextBox Text="{Binding TeacherPostalCode}"
+                                         PlaceholderText="Ange postnummer" />
+
+                                <TextBlock Text="Ort" />
+                                <TextBox Text="{Binding TeacherCity}"
+                                         PlaceholderText="Ange ort" />
+
+                                <TextBlock Text="Kompetensområde" />
+                                <TextBox Text="{Binding TeacherKnowledgeArea}"
+                                         PlaceholderText="Exempel: C#, Java, Databaser" />
+
+                                <Button Content="Spara lärare"
+                                        Command="{Binding AddTeacherCommand}"
+                                        HorizontalAlignment="Stretch" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <TextBlock Text="Registrerade lärare"
+                                   FontSize="20"
+                                   FontWeight="Bold" />
+
+                        <Button Content="Hämta lärare"
+                                Command="{Binding GetTeachersCommand}"
+                                HorizontalAlignment="Left" />
+
+                        <ListBox ItemsSource="{Binding Teachers}"
+                                 SelectedItem="{Binding SelectedTeacher}"
+                                 MinHeight="200">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="12"
+                                            Margin="5"
+                                            Background="{DynamicResource SurfaceBrush}"
+                                            CornerRadius="8">
+
+                                        <StackPanel Spacing="5">
+                                            <TextBlock Text="{Binding FirstName}"
+                                                       FontWeight="Bold"
+                                                       FontSize="16" />
+
+                                            <TextBlock Text="{Binding LastName}" />
+                                            <TextBlock Text="{Binding Phone}" />
+                                            <TextBlock Text="{Binding PersonalNumber}" />
+                                            <TextBlock Text="{Binding Address}" />
+                                            <TextBlock Text="{Binding PostalCode}" />
+                                            <TextBlock Text="{Binding City}" />
+
+                                            <TextBlock Text="{Binding KnowledgeArea,
+                                                                      StringFormat='Kompetensområde: {0}'}"
+                                                       FontWeight="Bold" />
+                                        </StackPanel>
+
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+
+                        <Button Content="Ta bort vald lärare"
+                                Command="{Binding DeleteTeacherCommand}"
+                                HorizontalAlignment="Stretch" />
+
+                        <Border Background="{DynamicResource SurfaceBrush}"
+                                BorderBrush="{DynamicResource BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Padding="20">
+
+                            <StackPanel Spacing="10">
+
+                                <TextBlock Text="Ändra kompetensområde"
+                                           FontSize="20"
+                                           FontWeight="Bold" />
+
+                                <TextBlock Text="Välj en lärare i listan ovan." />
+
+                                <TextBlock Text="Nytt kompetensområde" />
+
+                                <TextBox Text="{Binding TeacherKnowledgeArea}"
+                                         PlaceholderText="Ange nytt kompetensområde" />
+
+                                <Button Content="Uppdatera kompetensområde"
+                                        Command="{Binding UpdateTeacherCommand}"
+                                        HorizontalAlignment="Stretch" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+                </ScrollViewer>
+
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+
+</Window>

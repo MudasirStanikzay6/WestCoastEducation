@@ -1,0 +1,85 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="WestCoastEducation.Desktop.App"
+             xmlns:local="using:WestCoastEducation.Desktop"
+             RequestedThemeVariant="Light">
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <!-- DYNAMIC RESOURCES -->
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <SolidColorBrush x:Key="PrimaryBrush" Color="#2563EB" />
+            <SolidColorBrush x:Key="SidebarBrush" Color="#1E293B" />
+            <SolidColorBrush x:Key="BackgroundBrush" Color="#F1F5F9" />
+            <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="TextBrush" Color="#0F172A" />
+            <SolidColorBrush x:Key="SecondaryTextBrush" Color="#475569" />
+            <SolidColorBrush x:Key="BorderBrush" Color="#CBD5E1" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+
+        <!-- GENERAL TEXT -->
+
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}" />
+        </Style>
+
+        <!-- BUTTONS -->
+
+        <Style Selector="Button">
+            <Setter Property="Background"
+                    Value="{DynamicResource PrimaryBrush}" />
+            <Setter Property="Foreground"
+                    Value="#FFFFFF" />
+            <Setter Property="Padding"
+                    Value="14,9" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+        </Style>
+
+        <!-- TEXT INPUTS -->
+
+        <Style Selector="TextBox">
+            <Setter Property="Background"
+                    Value="{DynamicResource SurfaceBrush}" />
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource BorderBrush}" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="Padding"
+                    Value="10,8" />
+        </Style>
+
+        <!-- COMBO BOX -->
+
+        <Style Selector="ComboBox">
+            <Setter Property="Background"
+                    Value="{DynamicResource SurfaceBrush}" />
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource BorderBrush}" />
+        </Style>
+
+        <!-- TAB HEADERS -->
+
+        <Style Selector="TabItem">
+            <Setter Property="Foreground"
+                    Value="{DynamicResource TextBrush}" />
+        </Style>
+
+    </Application.Styles>
+
+</Application>
